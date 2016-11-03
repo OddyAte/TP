@@ -5,17 +5,21 @@
  */
 package notepad;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 /**
  *
  * @author SnK
  */
 public class NewJFrame extends javax.swing.JFrame {
-
+    private String file;
     /**
      * Creates new form NewJFrame
      */
@@ -49,13 +53,15 @@ public class NewJFrame extends javax.swing.JFrame {
         jFileChooser = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        JNewTabButton = new javax.swing.JMenuItem();
+        jOpenButton = new javax.swing.JMenuItem();
+        jCloseButton = new javax.swing.JMenuItem();
+        jSaveButton = new javax.swing.JMenuItem();
+        jSaveAsButton = new javax.swing.JMenuItem();
+        jExitButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         jFileChooser.setFileFilter(new MyCustomFilter());
@@ -74,30 +80,49 @@ public class NewJFrame extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("Open");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        JNewTabButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        JNewTabButton.setText("New Tab");
+        JNewTabButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                JNewTabButtonActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(JNewTabButton);
 
-        jMenuItem2.setText("Close");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Save");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Save As");
-        jMenu1.add(jMenuItem4);
-
-        jMenuItem5.setText("Exit");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jOpenButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jOpenButton.setText("Open");
+        jOpenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jOpenButtonActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(jOpenButton);
+
+        jCloseButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jCloseButton.setText("Close");
+        jCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCloseButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jCloseButton);
+
+        jSaveButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jSaveButton.setText("Save");
+        jMenu1.add(jSaveButton);
+
+        jSaveAsButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jSaveAsButton.setText("Save As");
+        jMenu1.add(jSaveAsButton);
+
+        jExitButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
+        jExitButton.setText("Exit");
+        jExitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jExitButtonActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jExitButton);
 
         jMenuBar1.add(jMenu1);
 
@@ -112,26 +137,32 @@ public class NewJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(4, 4, 4)
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
         JFileChooser chooser = new JFileChooser();
         chooser.showOpenDialog(null);
         File f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
-       
+        file = f.getName();
+        JPanel one = new JPanel();
+        jTabbedPane2.addTab(file,one);
+        
         try
         {
             FileReader reader = new FileReader(filename);
@@ -147,15 +178,28 @@ public class NewJFrame extends javax.swing.JFrame {
         
        
        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jOpenButtonActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
       System.exit(0);  // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jExitButtonActionPerformed
 
     private void jFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFileChooserActionPerformed
+
+    private void jCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCloseButtonActionPerformed
+        jTextArea1.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_jCloseButtonActionPerformed
+
+    private void JNewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JNewTabButtonActionPerformed
+        JPanel p = new JPanel();
+        JTextArea newtab = new JTextArea();
+        p.add(newtab);
+        jTabbedPane2.addTab("New Tab",p);
+        //.setText("");
+                // TODO add your handling code here:
+    }//GEN-LAST:event_JNewTabButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,16 +237,18 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem JNewTabButton;
+    private javax.swing.JMenuItem jCloseButton;
+    private javax.swing.JMenuItem jExitButton;
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jOpenButton;
+    private javax.swing.JMenuItem jSaveAsButton;
+    private javax.swing.JMenuItem jSaveButton;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
