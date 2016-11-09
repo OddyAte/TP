@@ -89,6 +89,11 @@ public class Notepad extends javax.swing.JFrame {
 
         jSaveAsButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jSaveAsButton.setText("Save As");
+        jSaveAsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSaveAsButtonActionPerformed(evt);
+            }
+        });
         jMenu1.add(jSaveAsButton);
 
         jExitButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
@@ -143,7 +148,7 @@ public class Notepad extends javax.swing.JFrame {
         }// TODO add your handling code here:
     }//GEN-LAST:event_jOpenButtonActionPerformed
 
-    private void jSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveButtonActionPerformed
+    private void jSaveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsButtonActionPerformed
          chooser.showSaveDialog(this); 
          f = chooser.getSelectedFile();
          try
@@ -174,6 +179,20 @@ public class Notepad extends javax.swing.JFrame {
          catch(IOException exc) {}
          catch(NullPointerException e1) {}
 
+    }//GEN-LAST:event_jSaveAsButtonActionPerformed
+
+    private void jSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveButtonActionPerformed
+        try
+         {
+             if(f.isFile())
+             {
+                     fileWriter = new FileWriter(f);
+                     ((Panel)jTabbedPane1.getSelectedComponent()).write(fileWriter);
+                     
+                 
+             }
+         }
+         catch(IOException exc) {}
     }//GEN-LAST:event_jSaveButtonActionPerformed
 
     /**
