@@ -5,6 +5,7 @@
  */
 package notepad.modular;
 
+import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,7 +28,8 @@ public class Notepad extends javax.swing.JFrame {
      * Creates new form Notepad
      */
     public Notepad() {
-        initComponents();
+         
+          initComponents();
     }
 
     /**
@@ -41,11 +43,11 @@ public class Notepad extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        NewTabButton = new javax.swing.JButton();
+        CloseTabButton = new javax.swing.JButton();
+        OpenButton = new javax.swing.JButton();
+        SaveButton = new javax.swing.JButton();
+        SaveAsButton = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -62,58 +64,69 @@ public class Notepad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 500));
 
-        jToolBar1.setBackground(new java.awt.Color(204, 204, 204));
         jToolBar1.setRollover(true);
 
-        jButton2.setBackground(new java.awt.Color(153, 153, 153));
-        jButton2.setForeground(new java.awt.Color(240, 240, 240));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\actions_tab_new_background.png")); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        NewTabButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_actions_tab_new_background.png")); // NOI18N
+        NewTabButton.setBorder(null);
+        NewTabButton.setBorderPainted(false);
+        NewTabButton.setContentAreaFilled(false);
+        NewTabButton.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        NewTabButton.setFocusable(false);
+        NewTabButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        NewTabButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        NewTabButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                NewTabButtonActionPerformed(evt);
             }
         });
-        jButton2.setOpaque(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setBorderPainted(false);
-        jToolBar1.add(jButton2);
+        NewTabButton.setOpaque(false);
+        NewTabButton.setContentAreaFilled(false);
+        NewTabButton.setBorderPainted(false);
+        jToolBar1.add(NewTabButton);
 
-        jButton3.setBackground(new java.awt.Color(153, 153, 153));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\open-file.png")); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        CloseTabButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_actions-tab-close-other-icon.png")); // NOI18N
+        CloseTabButton.setFocusable(false);
+        CloseTabButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        CloseTabButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        CloseTabButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                CloseTabButtonActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton3);
+        jToolBar1.add(CloseTabButton);
 
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Save-icon.png")); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton4);
+        OpenButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_open-file.png")); // NOI18N
+        OpenButton.setFocusable(false);
+        OpenButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        OpenButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        OpenButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OpenButtonActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(OpenButton);
 
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Save-as-icon.png")); // NOI18N
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton5);
+        SaveButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_save-icon.png")); // NOI18N
+        SaveButton.setFocusable(false);
+        SaveButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SaveButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(SaveButton);
 
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Actions-tab-close-other-icon.png")); // NOI18N
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton6);
+        SaveAsButton.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_save-as-icon.png")); // NOI18N
+        SaveAsButton.setFocusable(false);
+        SaveAsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SaveAsButton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        SaveAsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveAsButtonActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(SaveAsButton);
 
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
@@ -140,6 +153,11 @@ public class Notepad extends javax.swing.JFrame {
 
         jCloseButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jCloseButton.setText("Close");
+        jCloseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCloseButtonActionPerformed(evt);
+            }
+        });
         jMenu1.add(jCloseButton);
 
         jSaveButton.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
@@ -200,23 +218,16 @@ public class Notepad extends javax.swing.JFrame {
         }
         catch(Exception e){}
     }
-    private void jNewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewTabButtonActionPerformed
-        jTabbedPane1.addTab("New Tab", new Panel());  // TODO add your handling code here:
-    }//GEN-LAST:event_jNewTabButtonActionPerformed
-
-    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
-        System.exit(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_jExitButtonActionPerformed
-
-    private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
-      try{
-          New();
-      }
-      catch(NullPointerException e1){};
-    }//GEN-LAST:event_jOpenButtonActionPerformed
-
-    private void jSaveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsButtonActionPerformed
-         chooser.showSaveDialog(this); 
+    
+    public void  filesDropped( java.io.File[] files )
+      {   
+         try{
+             New();
+         }catch(Exception e){};
+      } 
+    
+    private void SaveAs(){
+        chooser.showSaveDialog(this); 
          f = chooser.getSelectedFile();
          try
          {
@@ -245,10 +256,9 @@ public class Notepad extends javax.swing.JFrame {
          catch(FileNotFoundException exc){}
          catch(IOException exc) {}
          catch(NullPointerException e1) {}
-
-    }//GEN-LAST:event_jSaveAsButtonActionPerformed
-
-    private void jSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveButtonActionPerformed
+    }
+    
+    private void Save(){
         try
          {
              if(f.isFile())
@@ -258,18 +268,75 @@ public class Notepad extends javax.swing.JFrame {
              }
          }
          catch(IOException exc) {}
+    }
+   
+    private void jNewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewTabButtonActionPerformed
+        jTabbedPane1.addTab("New Tab", new Panel());   
+    }//GEN-LAST:event_jNewTabButtonActionPerformed
+
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jExitButtonActionPerformed
+
+    private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
+      try{
+          New();
+      }
+      catch(NullPointerException e1){};
+    }//GEN-LAST:event_jOpenButtonActionPerformed
+
+    private void jSaveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsButtonActionPerformed
+         try{
+          SaveAs();
+      }
+      catch(NullPointerException e1){};
+    }//GEN-LAST:event_jSaveAsButtonActionPerformed
+
+    private void jSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveButtonActionPerformed
+        try{
+          Save();
+      }
+      catch(NullPointerException e1){};
     }//GEN-LAST:event_jSaveButtonActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
         try{
           New();
       }
       catch(NullPointerException e1){};        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_OpenButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void NewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTabButtonActionPerformed
         jTabbedPane1.addTab("New Tab", new Panel());        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_NewTabButtonActionPerformed
+
+    private void CloseTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CloseTabButtonActionPerformed
+         Component selected = jTabbedPane1.getSelectedComponent();
+        if (selected != null) {
+            jTabbedPane1.remove(selected);
+        }
+    }//GEN-LAST:event_CloseTabButtonActionPerformed
+
+    private void SaveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveAsButtonActionPerformed
+       try{
+          SaveAs();
+      }
+      catch(NullPointerException e1){};
+    }//GEN-LAST:event_SaveAsButtonActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        try{
+          Save();
+      }
+      catch(NullPointerException e1){};
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void jCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCloseButtonActionPerformed
+        Component selected = jTabbedPane1.getSelectedComponent();
+        if (selected != null) {
+            jTabbedPane1.remove(selected);
+        }
+    }//GEN-LAST:event_jCloseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,7 +364,7 @@ public class Notepad extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Notepad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -307,12 +374,12 @@ public class Notepad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CloseTabButton;
+    private javax.swing.JButton NewTabButton;
+    private javax.swing.JButton OpenButton;
+    private javax.swing.JButton SaveAsButton;
+    private javax.swing.JButton SaveButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JMenuItem jCloseButton;
     private javax.swing.JMenuItem jExitButton;
     private javax.swing.JMenu jMenu1;
