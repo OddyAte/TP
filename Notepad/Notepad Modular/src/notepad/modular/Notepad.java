@@ -39,6 +39,13 @@ public class Notepad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jToolBar1 = new javax.swing.JToolBar();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -50,8 +57,65 @@ public class Notepad extends javax.swing.JFrame {
         jExitButton = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
+        jButton1.setText("jButton1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(600, 500));
+
+        jToolBar1.setBackground(new java.awt.Color(204, 204, 204));
+        jToolBar1.setRollover(true);
+
+        jButton2.setBackground(new java.awt.Color(153, 153, 153));
+        jButton2.setForeground(new java.awt.Color(240, 240, 240));
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\actions_tab_new_background.png")); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setDebugGraphicsOptions(javax.swing.DebugGraphics.BUFFERED_OPTION);
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.setOpaque(false);
+        jButton2.setContentAreaFilled(false);
+        jButton2.setBorderPainted(false);
+        jToolBar1.add(jButton2);
+
+        jButton3.setBackground(new java.awt.Color(153, 153, 153));
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\open-file.png")); // NOI18N
+        jButton3.setFocusable(false);
+        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton3);
+
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Save-icon.png")); // NOI18N
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton4);
+
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Save-as-icon.png")); // NOI18N
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton5);
+
+        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\Actions-tab-close-other-icon.png")); // NOI18N
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton6);
+
+        getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
@@ -114,16 +178,8 @@ public class Notepad extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jNewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewTabButtonActionPerformed
-        jTabbedPane1.addTab("New Tab", new Panel());  // TODO add your handling code here:
-    }//GEN-LAST:event_jNewTabButtonActionPerformed
-
-    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
-        System.exit(0);        // TODO add your handling code here:
-    }//GEN-LAST:event_jExitButtonActionPerformed
-
-    private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
+    private void New()
+    {
         chooser.showOpenDialog(null);
         f = chooser.getSelectedFile();
         String filename = f.getAbsolutePath();
@@ -142,10 +198,21 @@ public class Notepad extends javax.swing.JFrame {
             br.close();
             //jTextArea1.requestFocus();
         }
-        catch(Exception e)
-        {
-            //jOptionPane.showMessageDialog(null,e);
-        }// TODO add your handling code here:
+        catch(Exception e){}
+    }
+    private void jNewTabButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jNewTabButtonActionPerformed
+        jTabbedPane1.addTab("New Tab", new Panel());  // TODO add your handling code here:
+    }//GEN-LAST:event_jNewTabButtonActionPerformed
+
+    private void jExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jExitButtonActionPerformed
+        System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jExitButtonActionPerformed
+
+    private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
+      try{
+          New();
+      }
+      catch(NullPointerException e1){};
     }//GEN-LAST:event_jOpenButtonActionPerformed
 
     private void jSaveAsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSaveAsButtonActionPerformed
@@ -188,12 +255,21 @@ public class Notepad extends javax.swing.JFrame {
              {
                      fileWriter = new FileWriter(f);
                      ((Panel)jTabbedPane1.getSelectedComponent()).write(fileWriter);
-                     
-                 
              }
          }
          catch(IOException exc) {}
     }//GEN-LAST:event_jSaveButtonActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+          New();
+      }
+      catch(NullPointerException e1){};        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jTabbedPane1.addTab("New Tab", new Panel());        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,6 +307,12 @@ public class Notepad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JMenuItem jCloseButton;
     private javax.swing.JMenuItem jExitButton;
     private javax.swing.JMenu jMenu1;
@@ -241,5 +323,6 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JMenuItem jSaveAsButton;
     private javax.swing.JMenuItem jSaveButton;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 }

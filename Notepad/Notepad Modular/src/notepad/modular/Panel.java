@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 
 /**
  *
@@ -20,8 +21,7 @@ public class Panel extends javax.swing.JPanel {
      * Creates new form Panel
      */
     public Panel() {
-        initComponents();
-        
+        initComponents();     
     }
     
 
@@ -42,6 +42,8 @@ public class Panel extends javax.swing.JPanel {
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jTextArea1.setMinimumSize(new java.awt.Dimension(400, 800));
+        TextLineNumber tln = new TextLineNumber(jTextArea1);
+        jScrollPane1.setRowHeaderView(tln);
         jScrollPane1.setViewportView(jTextArea1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
