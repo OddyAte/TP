@@ -6,12 +6,13 @@
 package notepad.modular;
 
 import java.awt.Component;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -19,18 +20,21 @@ import javax.swing.JOptionPane;
  *
  * @author SnK
  */
-public class Notepad extends javax.swing.JFrame {
+public class Notepad extends javax.swing.JFrame
+{
     private String file;
     private JFileChooser chooser = new JFileChooser();
     private File f;
     private FileWriter fileWriter;
+    private ReadFile readFile;
+    private SaveToCloud cloudsaver;
     /**
      * Creates new form Notepad
      */
     public Notepad() {
-         
-          initComponents();
-    }
+        initComponents();
+     
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +52,7 @@ public class Notepad extends javax.swing.JFrame {
         OpenButton = new javax.swing.JButton();
         SaveButton = new javax.swing.JButton();
         SaveAsButton = new javax.swing.JButton();
+        SaveToCloud = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -128,6 +133,17 @@ public class Notepad extends javax.swing.JFrame {
         });
         jToolBar1.add(SaveAsButton);
 
+        SaveToCloud.setIcon(new javax.swing.ImageIcon("C:\\Users\\SnK\\Documents\\TP\\Notepad\\Notepad Modular\\rsz_pvbuu.png")); // NOI18N
+        SaveToCloud.setFocusable(false);
+        SaveToCloud.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SaveToCloud.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        SaveToCloud.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SaveToCloudMouseClicked(evt);
+            }
+        });
+        jToolBar1.add(SaveToCloud);
+
         getContentPane().add(jToolBar1, java.awt.BorderLayout.PAGE_START);
         getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
 
@@ -196,35 +212,15 @@ public class Notepad extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void New()
-    {
-        chooser.showOpenDialog(null);
-        f = chooser.getSelectedFile();
-        String filename = f.getAbsolutePath();
-        file = f.getName();
-        jTabbedPane1.addTab(file,new Panel());
-        
-        try
-        {
-            FileReader reader = new FileReader(filename);
-            BufferedReader br = new BufferedReader(reader);
-            String s = null;          
-            while((s=br.readLine())!=null)
-            {
-               ((Panel) jTabbedPane1.getComponentAt(jTabbedPane1.getComponentCount()-1)).append(s+"\n");
-            }
-            br.close();
-            //jTextArea1.requestFocus();
-        }
-        catch(Exception e){}
-    }
-    
-    public void  filesDropped( java.io.File[] files )
-      {   
-         try{
-             New();
-         }catch(Exception e){};
-      } 
+    public void Open()
+ { 
+        chooser.showOpenDialog(this);
+        f = chooser.getSelectedFile(); 
+        jTabbedPane1.addTab(f.getName()+"  ", null, new Panel(), null);
+        jTabbedPane1.setSelectedIndex(jTabbedPane1.getComponentCount()-1);
+        readFile= new ReadFile(f, jTabbedPane1);
+        readFile.execute(); 
+ }
     
     private void SaveAs(){
         chooser.showSaveDialog(this); 
@@ -254,8 +250,7 @@ public class Notepad extends javax.swing.JFrame {
              }
          }
          catch(FileNotFoundException exc){}
-         catch(IOException exc) {}
-         catch(NullPointerException e1) {}
+         catch(IOException | NullPointerException exc) {}
     }
     
     private void Save(){
@@ -279,8 +274,8 @@ public class Notepad extends javax.swing.JFrame {
     }//GEN-LAST:event_jExitButtonActionPerformed
 
     private void jOpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jOpenButtonActionPerformed
-      try{
-          New();
+        try{
+          Open();
       }
       catch(NullPointerException e1){};
     }//GEN-LAST:event_jOpenButtonActionPerformed
@@ -301,7 +296,7 @@ public class Notepad extends javax.swing.JFrame {
 
     private void OpenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenButtonActionPerformed
         try{
-          New();
+          Open();
       }
       catch(NullPointerException e1){};        // TODO add your handling code here:
     }//GEN-LAST:event_OpenButtonActionPerformed
@@ -327,6 +322,7 @@ public class Notepad extends javax.swing.JFrame {
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         try{
           Save();
+          JOptionPane.showMessageDialog(null,"Save successful!");
       }
       catch(NullPointerException e1){};
     }//GEN-LAST:event_SaveButtonActionPerformed
@@ -337,6 +333,14 @@ public class Notepad extends javax.swing.JFrame {
             jTabbedPane1.remove(selected);
         }
     }//GEN-LAST:event_jCloseButtonActionPerformed
+
+    private void SaveToCloudMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveToCloudMouseClicked
+        chooser.showOpenDialog(this);
+        f = chooser.getSelectedFile();
+        cloudsaver = new SaveToCloud(f);
+        cloudsaver.Cloud();
+        
+    }//GEN-LAST:event_SaveToCloudMouseClicked
 
     /**
      * @param args the command line arguments
@@ -372,13 +376,14 @@ public class Notepad extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseTabButton;
     private javax.swing.JButton NewTabButton;
     private javax.swing.JButton OpenButton;
     private javax.swing.JButton SaveAsButton;
     private javax.swing.JButton SaveButton;
+    private javax.swing.JButton SaveToCloud;
     private javax.swing.JButton jButton1;
     private javax.swing.JMenuItem jCloseButton;
     private javax.swing.JMenuItem jExitButton;
@@ -392,4 +397,6 @@ public class Notepad extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
+
+    
 }

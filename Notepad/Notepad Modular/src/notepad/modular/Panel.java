@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 
 /**
  *
@@ -67,6 +66,7 @@ public class Panel extends javax.swing.JPanel {
         jTextArea1.append(text);
     }
     
+        
     public void write(FileWriter fw)
     {
         try
