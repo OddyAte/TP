@@ -175,6 +175,9 @@ public class Login extends javax.swing.JFrame {
           else{
               JOptionPane.showMessageDialog(null,"Invalid username or password!","Access Denied",JOptionPane.ERROR_MESSAGE);
           }
+          rs.close();
+          pst.close();
+          conn.close();
       } catch (SQLException | HeadlessException ex) {
             System.out.println(ex);}
             
@@ -190,7 +193,14 @@ public class Login extends javax.swing.JFrame {
             insert = "Insert into Ervin (Username,Parola) values ('"+user+"','"+password+"')";
             pst = conn.prepareStatement(insert);
             pst.executeUpdate();
+<<<<<<< HEAD
             JOptionPane.showMessageDialog(null, "User "+user+" created");
+=======
+            JOptionPane.showMessageDialog(null, "Utilizator "+user+" creat");
+            rs.close();
+            pst.close();
+            conn.close();
+>>>>>>> dd0554b5e5b2238d20978c5dd2a58d4a11fa9d5e
         }catch(SQLException e){
             System.err.println(e);
         }
